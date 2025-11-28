@@ -1,6 +1,8 @@
 // server.js
 // Entry point del servicio PREDICT
 
+
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -8,9 +10,11 @@ const predictRoutes = require("./routes/predictRoutes");
 const { initModel } = require("./services/tfModelService");
 
 const PORT = process.env.PORT || 3002;
+const MONGO_URI= process.env.MONGO_URI
+const MODEL_VERSION = process.env.MODEL_VERSION || "v1.0";
 
 const app = express();
-mongoose.connect('mongodb://localhost:27017/consumo_electrico')
+mongoose.connect(MONGO_URI)
     .then(() => {
         console.log('Conexión a la base de datos establecida');
     })
