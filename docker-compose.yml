@@ -20,7 +20,7 @@ services:
     ports:
       - "3002:3002"          # host:contenedor
 
-acquire:
+  acquire:
     build: ./acquire
     image: acquire:1.0
     container_name: acquire
