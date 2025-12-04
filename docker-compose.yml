@@ -20,5 +20,19 @@ services:
     ports:
       - "3002:3002"          # host:contenedor
 
+acquire:
+    build: ./acquire
+    image: acquire:1.0
+    container_name: acquire
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    environment:
+      # Definimos la URI directamente aquí para asegurar la conexión
+      - MONGO_URI=mongodb://mongo:27017/sd-practica
+    ports:
+      - "3001:3001"
+
+
 volumes:
   mongo-data:
